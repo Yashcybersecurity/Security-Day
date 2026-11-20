@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>National Computer Security Day 2026 | CIT Registration</title>
+  <meta name="description" content="Register for National Computer Security Day, 30 November 2026, Chennai Institute of Technology.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="top">
+    <div class="wrap">
+      <div class="brand">
+        <img src="assets/cit-logo.svg" alt="CIT Logo" aria-hidden="true">
+        <div class="brand-copy">
+          Chennai Institute of Technology
+          <small>Department of Computer Science and Engineering (Cyber Security)</small>
+        </div>
+      </div>
+      <div>
+        <a class="btn" href="#register">Register</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="heroBox">
+      <canvas id="net" aria-hidden="true"></canvas>
+      <p class="netlog" id="netlog" aria-hidden="true"></p>
+      <div class="wrap hero">
+        <p class="date">30<span>Nov</span></p>
+        <h1>National Computer Security Day</h1>
+        <p class="lede">Three events in one day: build, capture flags, or learn how recent attacks worked. Pick the one that fits you and register below.</p>
+        <p class="count" id="count" aria-live="polite"></p>
+        <a class="btn" href="#register">Register now</a>
+      </div>
+    </div>
+
+    <section id="schedule">
+      <div class="wrap">
+        <h2>Schedule</h2>
+        <p class="hint" style="margin:0 0 14px">9:00 am to 2:00 pm. Select an event to start registering for it.</p>
+        <div class="tl"><div class="tl-in" id="tl"></div></div>
+        <div class="cards" id="cards"></div>
+      </div>
+    </section>
+
+    <section id="register">
+      <div class="wrap">
+        <h2>Register</h2>
+        <p class="hint">The events overlap in time, so each person or team registers for one event.</p>
+
+        <form id="form" novalidate>
+          <div class="grid">
+            <div>
+              <label for="full_name">Full name</label>
+              <input id="full_name" name="full_name" autocomplete="name" required maxlength="100">
+            </div>
+            <div>
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" autocomplete="email" required>
+            </div>
+            <div>
+              <label for="phone">Phone (WhatsApp preferred)</label>
+              <input id="phone" name="phone" type="tel" inputmode="numeric" autocomplete="tel" required maxlength="10" placeholder="10-digit mobile number">
+            </div>
+            <div>
+              <label for="participant_type">I am a</label>
+              <select id="participant_type" name="participant_type" required>
+                <option value="student">Student</option>
+                <option value="staff">Staff</option>
+              </select>
+            </div>
+            <div id="regWrap">
+              <label for="reg_no">Register number</label>
+              <input id="reg_no" name="reg_no" maxlength="30">
+            </div>
+            <div id="yearWrap">
+              <label for="year">Year of study</label>
+              <select id="year" name="year">
+                <option value="1">1st year</option>
+                <option value="2">2nd year</option>
+                <option value="3">3rd year</option>
+                <option value="4">4th year</option>
+              </select>
+            </div>
+            <div class="full">
+              <label for="department">Department</label>
+              <select id="department" name="department" required>
+                <option value="">Choose department</option>
+              </select>
+            </div>
+
+            <fieldset class="full">
+              <legend>Event</legend>
+              <div id="eventOpts"></div>
+            </fieldset>
+
+            <div id="teamBox" class="full hidden">
+              <div class="grid" style="padding:0">
+                <div>
+                  <label for="team_name">Team name</label>
+                  <input id="team_name" name="team_name" maxlength="60">
+                </div>
+                <div id="tsWrap">
+                  <label for="team_size">Number of team members</label>
+                  <select id="team_size" name="team_size"></select>
+                </div>
+                <div id="psWrap" class="full">
+                  <label for="problem_statement">Problem statement</label>
+                  <select id="problem_statement" name="problem_statement"></select>
+                </div>
+                <div class="full">
+                  <label id="memLabel">Team members</label>
+                  <div id="members" class="grid" style="padding:0"></div>
+                  <p class="hint">Register the whole team once, through the team lead (member 1 is you). Teammates do not need to register separately.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="full hidden" id="paymentWrap">
+              <label>Payment & Verification <span style="color:var(--flag)">*</span></label>
+              <div class="payment-card-box">
+                <div class="payment-qr-side">
+                  <img id="activeQrImg" src="" alt="Payment QR" class="active-qr" onclick="showQr(this.src)">
+                  <small>Click QR to enlarge</small>
+                </div>
+                <div class="payment-upload-side">
+                  <p style="margin:0 0 8px;font-size:14px;font-weight:500">Scan this QR code to complete payment, then upload your screenshot:</p>
+                  <div class="upload-box">
+                    <input id="payment_screenshot" name="payment_screenshot" type="file" accept="image/*" required style="display:block;margin:0 auto">
+                    <p class="hint">Upload confirmation screenshot (Max 1 MB, auto-compressed).</p>
+                  </div>
+                  <div id="previewWrap" class="preview-area hidden">
+                    <img id="imgPreview" alt="Payment preview">
+                    <div class="preview-info">
+                      <b id="previewName">Screenshot loaded</b>
+                      <span id="compressionRatio">Compressed</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="err" id="err" role="alert"></p>
+          <button class="btn" id="submit" type="submit">Complete registration</button>
+        </form>
+
+        <div id="done" class="ok hidden" tabindex="-1">
+          <h2>You are registered</h2>
+          <p id="doneMsg"></p>
+          <p>Reference: <b id="ref"></b>. Screenshot this page or note the reference to show at the desk.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact-sec">
+      <div class="wrap">
+        <div class="contact-card">
+          <h2>Reach Out</h2>
+          <p class="hint" style="margin:0 0 16px">Need help with registration or event queries? Contact our event coordinators:</p>
+          <div class="contact-grid">
+            <div class="contact-box">
+              <b>N Adarsh</b>
+              <div class="contact-links">
+                <a href="tel:6381984881" class="c-link">📞 Call: 6381984881</a>
+                <a href="https://wa.me/916381984881" target="_blank" rel="noopener" class="c-link wa">💬 WhatsApp</a>
+              </div>
+            </div>
+            <div class="contact-box">
+              <b>Yaswant</b>
+              <div class="contact-links">
+                <a href="tel:8903071754" class="c-link">📞 Call: 8903071754</a>
+                <a href="https://wa.me/918903071754" target="_blank" rel="noopener" class="c-link wa">💬 WhatsApp</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="qrModal" class="qr-modal hidden" onclick="this.classList.add('hidden')">
+    <img id="modalQrImg" src="" alt="Enlarged QR Code">
+  </div>
+
+  <footer>
+    <div class="wrap">National Computer Security Day 2026, Chennai Institute of Technology. Questions? Contact the organizing team of the Tech Club.</div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/animation.js"></script>
+</body>
+</html>
